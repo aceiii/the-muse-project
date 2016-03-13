@@ -1,0 +1,10 @@
+{
+  "name": "the-muse-project",
+  "version": "1.0.0",
+  "description": "The Muse Technical Project",
+  "main": "index.html",
+  "scripts": {
+  },
+  "author": "Borin Ouch",
+  "license": "MIT"
+}
