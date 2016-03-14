@@ -81,46 +81,44 @@ var SearchForm = React.createClass({
 
         return (
             <div>
-                <div className="panel panel-default">
-                    <form onSubmit={this._onSubmit}>
-                        <div className="panel-heading">
-                            <h3 className="panel-title">Search Form</h3>
-                        </div>
-                        <div className="panel-body">
-                            <div className="form-group">
-                                <div className="checkbox">
-                                    <label>
-                                        <input id="search-field-descending" type="checkbox" onChange={this._onDescendingChange} />
-                                        Descending
-                                    </label>
-                                </div>
+                <form className="panel panel-default" onSubmit={this._onSubmit}>
+                    <div className="panel-heading">
+                        <h3 className="panel-title">Search Form</h3>
+                    </div>
+                    <div className="panel-body">
+                        <div className="form-group">
+                            <div className="checkbox">
+                                <label>
+                                    <input id="search-field-descending" type="checkbox" onChange={this._onDescendingChange} />
+                                    Descending
+                                </label>
                             </div>
-                            <div className="form-group">
-                                <div className="checkbox">
-                                    <label>
-                                        <input id="search-field-flexible" type="checkbox" onChange={this._onFlexibleChange} />
-                                        Flexible
-                                    </label>
-                                </div>
+                        </div>
+                        <div className="form-group">
+                            <div className="checkbox">
+                                <label>
+                                    <input id="search-field-flexible" type="checkbox" onChange={this._onFlexibleChange} />
+                                    Flexible
+                                </label>
                             </div>
-                            <CollapseBox title="Company" name="company">
-                                <CheckboxList id="search-field-company" list={this.props.companies} onChange={this._onCompanyChange} />
-                            </CollapseBox>
-                            <CollapseBox title="Category" name="category">
-                                <CheckboxList id="search-field-category" list={this.props.categories} onChange={this._onCategoryChange} />
-                            </CollapseBox>
-                            <CollapseBox title="Level" name="level">
-                                <CheckboxList id="search-field-level" list={this.props.levels} onChange={this._onLevelChange} />
-                            </CollapseBox>
-                            <CollapseBox title="Location" name="location">
-                                <CheckboxList id="search-field-location" list={this.props.locations} onChange={this._onLocationChange} />
-                            </CollapseBox>
                         </div>
-                        <div className="panel-footer clearfix">
-                            <button className="btn btn-primary pull-right" type="submit" disabled={this.state.loading}>Search</button>
-                        </div>
-                    </form>
-                </div>
+                        <CollapseBox title="Company" name="company">
+                            <CheckboxList id="search-field-company" list={this.props.companies} onChange={this._onCompanyChange} />
+                        </CollapseBox>
+                        <CollapseBox title="Category" name="category">
+                            <CheckboxList id="search-field-category" list={this.props.categories} onChange={this._onCategoryChange} />
+                        </CollapseBox>
+                        <CollapseBox title="Level" name="level">
+                            <CheckboxList id="search-field-level" list={this.props.levels} onChange={this._onLevelChange} />
+                        </CollapseBox>
+                        <CollapseBox title="Location" name="location">
+                            <CheckboxList id="search-field-location" list={this.props.locations} onChange={this._onLocationChange} />
+                        </CollapseBox>
+                    </div>
+                    <div className="panel-footer clearfix">
+                        <button className="btn btn-primary pull-right" type="submit" disabled={this.state.loading}>Search</button>
+                    </div>
+                </form>
                 {results}
             </div>
         );
