@@ -7,12 +7,28 @@ var ResultsList = require("./resultslist.jsx");
 var SearchForm = React.createClass({
 	getInitialState() {
 	    return {
+
+
 	    	page: 0,
 	    	page_count: 0,
      		results: [],
 	    };
 	},
 	render: function () {
+		var prevButton, nextButton;
+
+		if (this.state.page_count && this.state.page > 0) {
+			prevButton = (
+				<button onClick={this._onPrevClick}>Prev</button>
+			);
+		}
+
+		if (this.state.page_count && this.state.page < this.state.page_count-1) {
+			nextButton = (
+				<button onClick={this._onNextClick}>Next</button>
+			);
+		}
+
 		return (
 			<div className="search-form-wrapper">
 				<div className="search-form">
@@ -20,16 +36,32 @@ var SearchForm = React.createClass({
 					<button onClick={this._onClick}>Search</button>
 				</div>
         		<ResultsList results={this.state.results} />
+        		{prevButton}{nextButton}
 			</div>
 		);
 	},
 	_onClick: function () {
+		this._fetch({
+			page: 0,
+		});
+	},
+	_onPrevClick: function () {
+		this._fetch({
+			page: this.state.page - 1,
+		});
+	},
+	_onNextClick: function () {
+		this._fetch({
+			page: this.state.page + 1,
+		});
+	},
+	_fetch: function (data) {
 		$.ajax({
 			type: "GET",
 			url: this.props.url,
 			dataType: "json",
 			data: {
-				page: 0,
+				page: data.page,
 			},
 		}).then(function (obj) {
 			this.setState({
