@@ -4,8 +4,10 @@
   "description": "The Muse Technical Project",
   "main": "index.html",
   "scripts": {
+    "prep-dist": "mkdir -p dist/css && mkdir -p dist/js",
+    "copy-bootstrap": "cp -Rn node_modules/bootstrap/dist/css/ dist/css",
     "watch": "watchify src/main.js -o dist/js/main.js -v",
-    "start": "cp -Rnv node_modules/bootstrap/dist/css/ dist/css; npm run watch"
+    "start": "npm run prep-dist; npm run copy-bootstrap; npm run watch"
   },
   "author": "Borin Ouch",
   "license": "MIT",
