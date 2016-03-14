@@ -8,4 +8,3 @@ var App = require("./app.jsx");
 $(document).ready(function () {
    ReactDOM.render(React.createElement(App), document.getElementById("app")); 
 });
-
