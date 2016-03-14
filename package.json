@@ -4,7 +4,15 @@
   "description": "The Muse Technical Project",
   "main": "index.html",
   "scripts": {
+    "watch": "watchify src/main.js -o dist/js/main.js -v",
+    "start": "cp -Rnv node_modules/bootstrap/dist/css/ dist/css; npm run watch"
   },
   "author": "Borin Ouch",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "bootstrap": "^3.3.6",
+    "jquery": "^2.2.1",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7"
+  }
 }
