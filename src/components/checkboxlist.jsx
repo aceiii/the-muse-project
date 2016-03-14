@@ -20,8 +20,7 @@ var CheckboxList = React.createClass({
         }.bind(this));
 
         return (
-            <div className="checkbox-list">
-                <h4>{this.props.title}</h4>
+            <div className="checkbox-list clearfix">
                 {list}
             </div>
         );

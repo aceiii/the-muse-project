@@ -1,4 +1,9 @@
 
+var $ = require("jquery");
+
+window.jQuery = $;
+require("bootstrap");
+
 var React = require("react");
 
 var Config = require("../config.js");

@@ -4,6 +4,7 @@ var $ = require("jquery");
 
 var ResultsList = require("./resultslist.jsx");
 var CheckboxList = require("./checkboxlist.jsx");
+var CollapseBox = require("./collapsebox.jsx");
 
 var SearchForm = React.createClass({
     getInitialState() {
@@ -93,10 +94,18 @@ var SearchForm = React.createClass({
                                     </label>
                                 </div>
                             </div>
-                            <CheckboxList id="search-field-company" title="Company" list={this.props.companies} onChange={this._onCompanyChange} />
-                            <CheckboxList id="search-field-category" title="Category" list={this.props.categories} onChange={this._onCategoryChange} />
-                            <CheckboxList id="search-field-level" title="Level" list={this.props.levels} onChange={this._onLevelChange} />
-                            <CheckboxList id="search-field-location" title="Location" list={this.props.locations} onChange={this._onLocationChange} />
+                            <CollapseBox title="Company" name="company">
+                                <CheckboxList id="search-field-company" list={this.props.companies} onChange={this._onCompanyChange} />
+                            </CollapseBox>
+                            <CollapseBox title="Category" name="category">
+                                <CheckboxList id="search-field-category" list={this.props.categories} onChange={this._onCategoryChange} />
+                            </CollapseBox>
+                            <CollapseBox title="Level" name="level">
+                                <CheckboxList id="search-field-level" list={this.props.levels} onChange={this._onLevelChange} />
+                            </CollapseBox>
+                            <CollapseBox title="Location" name="location">
+                                <CheckboxList id="search-field-location" list={this.props.locations} onChange={this._onLocationChange} />
+                            </CollapseBox>
                         </div>
                         <div className="panel-footer clearfix">
                             <button className="btn btn-primary pull-right" type="submit" disabled={this.state.loading}>Search</button>
@@ -123,7 +132,7 @@ var SearchForm = React.createClass({
         this.setState({
             started: false
         });
-        
+
         this._fetch({
             page: 0,
         });
