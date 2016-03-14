@@ -32,7 +32,7 @@ var SearchForm = React.createClass({
 			<div className="search-form-wrapper">
 				<div className="search-form">
 					Jobs Search
-					<button onClick={this._onClick}>Search</button>
+					<button onClick={this._onClick} disabled={this.state.loading}>Search</button>
 				</div>
         		<ResultsList results={this.state.results} />
         		{prevButton}{nextButton}
