@@ -8,8 +8,15 @@ var SearchForm = require("./searchform.jsx");
 var App = React.createClass({
     render: function () {
         return (
-    		<SearchForm url={Config.url} />
-    	);
+        	<div className="container">
+		  		<h1>The Muse Project</h1>
+	            <SearchForm url={Config.url}
+	            	companies={Config.search.companies}
+	            	categories={Config.search.categories}
+	            	levels={Config.search.levels}
+	            	locations={Config.search.locations} />
+        	</div>
+        );
     },
 });
 

@@ -4,24 +4,22 @@ var React = require("React");
 var ResultItem = require("./resultitem.jsx");
 
 var ResultsList = React.createClass({
-	render: function () {
+    render: function () {
 
-		var list = [];
+        var list = [];
 
-		this.props.results.forEach(function (res) {
-			list.push(
-				<ResultItem key={res.id} {...res} />
-			);
-		});
+        this.props.results.forEach(function (res) {
+            list.push(
+                <ResultItem key={res.id} {...res} />
+            );
+        });
 
-		return (
-			<div className="results-list">
-				<ul>
-					{list}
-				</ul>
-			</div>
-		);
-	},
+        return (
+            <div className="list-group">
+                {list}
+            </div>
+        );
+    },
 });
 
 module.exports = ResultsList;
