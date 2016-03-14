@@ -1,10 +1,10 @@
 
 var React = require("react");
 
-var Config = require("./config.js");
+var Config = require("../config.js");
 
-var SearchForm = require("./components/searchform.jsx");
-var ResultsList = require("./components/resultslist.jsx");
+var SearchForm = require("./searchform.jsx");
+var ResultsList = require("./resultslist.jsx");
 
 var App = React.createClass({
     render: function () {
