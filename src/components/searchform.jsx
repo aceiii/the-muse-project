@@ -27,13 +27,21 @@ var SearchForm = React.createClass({
 
         if (this.state.page_count && this.state.page > 0) {
             prevButton = (
-                <button className="btn btn-default pull-left" onClick={this._onPrevClick} disabled={this.state.loading}>Prev</button>
+                <li className="previous">
+                    <a href="#" onClick={this._onPrevClick}>
+                        <span aria-hidden="true">&larr;</span> Prev
+                    </a>
+                </li>
             );
         }
 
         if (this.state.page_count && this.state.page < this.state.page_count-1) {
             nextButton = (
-                <button className="btn btn-default pull-right" onClick={this._onNextClick} disabled={this.state.loading}>Next</button>
+                <li className="next">
+                    <a href="#" onClick={this._onNextClick}>
+                        Next <span aria-hidden="true">&rarr;</span>
+                    </a>
+                </li>
             );
         }
 
@@ -46,9 +54,10 @@ var SearchForm = React.createClass({
                     </div>
                     <div className="panel-body">
                         <ResultsList results={this.state.results} />
-                    </div>
-                    <div className="panel-footer clearfix">
-                        {prevButton}{nextButton}
+                        <ul className="pager">
+                            {prevButton}
+                            {nextButton}
+                        </ul>
                     </div>
                 </div>
             );
@@ -141,15 +150,23 @@ var SearchForm = React.createClass({
         event.stopPropagation();
         return false;
     },
-    _onPrevClick: function () {
+    _onPrevClick: function (event) {
         this._fetch({
             page: this.state.page - 1,
         });
+
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
     },
-    _onNextClick: function () {
+    _onNextClick: function (event) {
         this._fetch({
             page: this.state.page + 1,
         });
+
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
     },
     _fetch: function (data) {
         this.setState({ loading: true });
