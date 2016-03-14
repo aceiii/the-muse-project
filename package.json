@@ -6,7 +6,7 @@
   "scripts": {
     "prep-dist": "mkdir -p dist/css && mkdir -p dist/js",
     "copy-bootstrap": "cp -Rn node_modules/bootstrap/dist/css/ dist/css",
-    "watch": "watchify src/main.js -o dist/js/main.js -v",
+    "watch": "watchify -t reactify src/main.js -o dist/js/main.js -v",
     "start": "npm run prep-dist; npm run copy-bootstrap; npm run watch"
   },
   "author": "Borin Ouch",
@@ -15,6 +15,7 @@
     "bootstrap": "^3.3.6",
     "jquery": "^2.2.1",
     "react": "^0.14.7",
-    "react-dom": "^0.14.7"
+    "react-dom": "^0.14.7",
+    "reactify": "^1.1.1"
   }
 }
