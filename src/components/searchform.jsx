@@ -23,7 +23,7 @@ var SearchForm = React.createClass({
         };
     },
     render: function () {
-        var prevButton, nextButton;
+        var prevButton, nextButton, pageNumber;
 
         if (this.state.page_count && this.state.page > 0) {
             prevButton = (
@@ -45,6 +45,17 @@ var SearchForm = React.createClass({
             );
         }
 
+        if (this.state.loading) {
+            pageNumber = (
+                <li><span>Loading...</span></li>
+            );      
+        } else {
+            var pageText = (this.state.page+1) + " of " + this.state.page_count;
+            pageNumber = (
+                <li><span>{pageText}</span></li>
+            );
+        }
+
         var results;
         if (this.state.started) {
             results = (
@@ -56,6 +67,7 @@ var SearchForm = React.createClass({
                         <ResultsList results={this.state.results} />
                         <ul className="pager">
                             {prevButton}
+                            {pageNumber}
                             {nextButton}
                         </ul>
                     </div>
