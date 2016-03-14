@@ -21,11 +21,12 @@ var SearchForm = React.createClass({
             page: 0,
             page_count: 0,
             results: [],
+            error: null,
         };
     },
     render: function () {
         var results;
-        if (this.state.started) {
+        if (this.state.error === null && this.state.started) {
             results = (
                 <div className="panel panel-default">
                     <div className="panel-heading">
@@ -46,6 +47,8 @@ var SearchForm = React.createClass({
 
             if (this.state.loading) {
                 text = "Loading. Please be patient...";
+            } else if (this.state.error !== null) {
+                text = this.state.error;
             }
 
             results = (
@@ -139,7 +142,7 @@ var SearchForm = React.createClass({
         });
     },
     _fetch: function (data) {
-        this.setState({ loading: true });
+        this.setState({ loading: true, error: null });
 
         $.ajax({
             type: "GET",
@@ -161,8 +164,11 @@ var SearchForm = React.createClass({
                 page_count: obj.page_count,
                 results: obj.results
             });
-        }.bind(this), function () {
-            // TODO: error
+        }.bind(this), function (res) {
+            var obj = res.responseJSON;
+            this.setState({
+                error: obj.error,
+            })
         }.bind(this)).always(function () {
             this.setState({
                 started: true,
