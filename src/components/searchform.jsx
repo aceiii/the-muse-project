@@ -5,6 +5,7 @@ var $ = require("jquery");
 var ResultsList = require("./resultslist.jsx");
 var CheckboxList = require("./checkboxlist.jsx");
 var CollapseBox = require("./collapsebox.jsx");
+var Pager = require("./pager.jsx");
 
 var SearchForm = React.createClass({
     getInitialState() {
@@ -23,39 +24,6 @@ var SearchForm = React.createClass({
         };
     },
     render: function () {
-        var prevButton, nextButton, pageNumber;
-
-        if (this.state.page_count && this.state.page > 0) {
-            prevButton = (
-                <li className="previous">
-                    <a href="#" onClick={this._onPrevClick}>
-                        <span aria-hidden="true">&larr;</span> Prev
-                    </a>
-                </li>
-            );
-        }
-
-        if (this.state.page_count && this.state.page < this.state.page_count-1) {
-            nextButton = (
-                <li className="next">
-                    <a href="#" onClick={this._onNextClick}>
-                        Next <span aria-hidden="true">&rarr;</span>
-                    </a>
-                </li>
-            );
-        }
-
-        if (this.state.loading) {
-            pageNumber = (
-                <li><span>Loading...</span></li>
-            );      
-        } else {
-            var pageText = (this.state.page+1) + " of " + this.state.page_count;
-            pageNumber = (
-                <li><span>{pageText}</span></li>
-            );
-        }
-
         var results;
         if (this.state.started) {
             results = (
@@ -65,11 +33,11 @@ var SearchForm = React.createClass({
                     </div>
                     <div className="panel-body">
                         <ResultsList results={this.state.results} />
-                        <ul className="pager">
-                            {prevButton}
-                            {pageNumber}
-                            {nextButton}
-                        </ul>
+                        <Pager page={this.state.page}
+                            page_count={this.state.page_count}
+                            loading={this.state.loading}
+                            onPrev={this._onPrevClick}
+                            onNext={this._onNextClick} />
                     </div>
                 </div>
             );
@@ -160,23 +128,15 @@ var SearchForm = React.createClass({
         event.stopPropagation();
         return false;
     },
-    _onPrevClick: function (event) {
+    _onPrevClick: function () {
         this._fetch({
             page: this.state.page - 1,
         });
-
-        event.preventDefault();
-        event.stopPropagation();
-        return false;
     },
-    _onNextClick: function (event) {
+    _onNextClick: function () {
         this._fetch({
             page: this.state.page + 1,
         });
-
-        event.preventDefault();
-        event.stopPropagation();
-        return false;
     },
     _fetch: function (data) {
         this.setState({ loading: true });
