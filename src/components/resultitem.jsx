@@ -4,7 +4,7 @@ var React = require("react");
 var ResultItem = React.createClass({
 	render: function () {
 		return (
-			<li>ResultItem</li>
+			<li>{this.props.name} @ {this.props.company.name}</li>
 		);
 	},
 });
